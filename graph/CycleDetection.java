@@ -17,8 +17,9 @@ class Main{
               list.get(v2).add(v1);
             }
             System.out.println(list+" "+list.size());
-            boolean result = new DetectCycle().BFS_isCyclic(list, ver);
-            if(result==false){
+            // boolean result = new DetectCycle().BFS_isCyclic(list, ver);
+            boolean result1 = new DetectCycle().DFS_isCyclic(list, ver);
+            if(result1==false){
               System.out.println("Loop Exsists");
             }
             else{
@@ -57,6 +58,28 @@ class DetectCycle{
           q.add(i);
           vis[i]=0;}
         }
+      }
+    }
+    return true;
+  }
+
+  public boolean DFS_isCyclic(ArrayList<ArrayList<Integer>> list,int ver){
+    int[] vis = new int[ver+1];
+    // Helper().initialization(vis);
+    Stack<Integer> s = new Stack<Integer>();
+    ArrayList<Integer> tmp = new ArrayList<>();
+    tmp=list.get(0);
+    for(int i : tmp){
+      s.push(i);
+    }
+    while(!s.isEmpty()){
+      int pop = s.pop();
+      vis[pop]=1;
+      ArrayList<Integer> arr = new ArrayList<>();
+      arr = list.get(pop);
+      for(int i : arr){
+        if(vis[i]==1);
+        else if(vis[i])
       }
     }
     return true;
