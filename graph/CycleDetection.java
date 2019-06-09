@@ -97,4 +97,33 @@ class Helper{
     }
     System.out.println();
   }
+public boolean recursiveDFSisCyclic(ArrayList<ArrayList<Integer>> list,int ver){
+    int[] vis = new int[ver+1];
+    for(int i=0;i<list.size();i++){
+      if(vis[i]==0){
+        if(dfsUtil(i,vis,-1,list)){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  public boolean dfsUtil(int curvertex,int[] vis,int parent,ArrayList<ArrayList<Integer>> list){
+    vis[curvertex] = 1;
+    ArrayList<Integer> temp = list.get(curvertex);
+    for(int i=0;i<temp.size();i++){
+      int vertex = temp.get(i);
+      if(vertex!=parent){
+        if(vis[vertex]==1){
+          return true;
+        }
+        else{
+          if(dfsUtil(vertex, vis, curvertex, list)){
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 }
